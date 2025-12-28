@@ -25,9 +25,36 @@ function validate(email) {
   console.log(arr[0]);
   // can only contain letters (a-z), digits (0-9), dots (.), underscores (_), or hyphens (-)
   // cannot start or end with a dot.
-  const localRegex = /^[^\.][a-z0-9._]*[^\.]$/;
-  const localTest = localRegex.test(arr[0]);
-  console.log(localTest);
+  // const localRegex = /^[^\.][a-z0-9._]*[^\.]$/
+  // const localTest = localRegex.test(arr[0])
+  // console.log(localTest)
+
+  function validateLocal(local) {
+    // 1. Check for double dots
+    if (local.includes('..')) return false;
+
+    // 2. Check for starting or ending with a dot
+    if (local.startsWith('.') || local.endsWith('.')) return false;
+
+    // 3. Check for allowed characters only
+    const allowedCharsRegex = /^[a-zA-Z0-9._-]+$/;
+    if (!allowedCharsRegex.test(local)) return false;
+  }
+
+  validateLocal(arr[0]);
+
+  // domain
+  console.log(arr[1]);
+  // does NOT contain two dots in a row
+  if (arr[1].includes('..')) return false;
+
+  // contains at least one dot
+  const domainDot = arr[1].includes('.');
+  if (!domainDot) return false;
+  console.log(domainDot);
+  // must end with a dot followed by two letters
+  const domainRegex = /[.][a-zA-Z]{2,}$/;
+  if (!domainRegex.test(arr[1])) return false;
 
   // return email;
 }
