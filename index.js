@@ -39,9 +39,11 @@ function validate(email) {
     // 3. Check for allowed characters only
     const allowedCharsRegex = /^[a-zA-Z0-9._-]+$/;
     if (!allowedCharsRegex.test(local)) return false;
+
+    return true;
   }
 
-  validateLocal(arr[0]);
+  if (validateLocal(arr[0]) === false) return false;
 
   // domain
   console.log(arr[1]);
@@ -55,6 +57,8 @@ function validate(email) {
   // must end with a dot followed by two letters
   const domainRegex = /[.][a-zA-Z]{2,}$/;
   if (!domainRegex.test(arr[1])) return false;
+
+  return true;
 
   // return email;
 }
