@@ -9,3 +9,25 @@
 // Must contain at least one dot.
 // Must end with a dot followed by at least two letters.
 // Neither the local or domain part can have two dots in a row.
+
+function validate(email) {
+  console.log(email);
+
+  // split email by @
+  const arr = email.split('@');
+
+  // contain exactly one @ symbol
+  const hasExactlyOneAt = arr.length === 2;
+  console.log(hasExactlyOneAt);
+  if (!hasExactlyOneAt) return false;
+
+  // The local part (before the @)
+  console.log(arr[0]);
+  // can only contain letters (a-z), digits (0-9), dots (.), underscores (_), or hyphens (-)
+  // cannot start or end with a dot.
+  const localRegex = /^[^\.][a-z0-9._]*[^\.]$/;
+  const localTest = localRegex.test(arr[0]);
+  console.log(localTest);
+
+  // return email;
+}
